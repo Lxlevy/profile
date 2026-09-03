@@ -43,6 +43,7 @@ body {
 
 body::before {
   content: "";
+  z-index: 0;
   position: fixed;
   inset: 0;
   pointer-events: none;
@@ -55,24 +56,133 @@ body::before {
   opacity: 0.9;
 }
 
-body::after {
-  content: "";
+
+.mountain-scene {
   position: fixed;
-  left: -5vw;
-  right: -5vw;
-  bottom: -2vh;
-  height: 48vh;
+  inset: 0;
+  z-index: 0;
   pointer-events: none;
-  opacity: 0.95;
+  overflow: hidden;
   background:
-    linear-gradient(145deg, transparent 0 34%, #0b1a29 34.5% 49%, transparent 49.5%) 0 12% / 56% 72% no-repeat,
-    linear-gradient(30deg, transparent 0 32%, #10283d 32.5% 50%, transparent 50.5%) 100% 18% / 62% 78% no-repeat,
-    linear-gradient(152deg, transparent 0 38%, #0a1521 38.5% 56%, transparent 56.5%) 28% 40% / 66% 74% no-repeat,
-    linear-gradient(28deg, transparent 0 40%, #173852 40.5% 57%, transparent 57.5%) 82% 34% / 62% 70% no-repeat;
-  filter: drop-shadow(0 -14px 28px rgba(0,0,0,0.18));
+    radial-gradient(circle at 50% 20%, rgba(82, 154, 206, 0.13), transparent 30%),
+    linear-gradient(180deg, #07111b 0%, #081522 42%, #0a1826 68%, #081019 100%);
 }
 
+.mountain-scene::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 22% 22%, rgba(82, 154, 206, 0.06), transparent 22%),
+    radial-gradient(circle at 78% 28%, rgba(82, 154, 206, 0.05), transparent 26%),
+    linear-gradient(to bottom, transparent 0 57%, rgba(2, 9, 15, 0.12) 75%, rgba(2, 7, 12, 0.38) 100%);
+}
 
+.mountain {
+  position: absolute;
+  left: -6%;
+  width: 112%;
+  height: 66%;
+  bottom: -1%;
+  transform-origin: bottom center;
+}
+
+.mountain-far {
+  background: #173a56;
+  opacity: 0.60;
+  clip-path: polygon(
+    0 76%,
+    7% 66%,
+    13% 72%,
+    20% 56%,
+    28% 69%,
+    36% 51%,
+    44% 67%,
+    53% 45%,
+    61% 64%,
+    69% 51%,
+    76% 67%,
+    84% 47%,
+    92% 63%,
+    100% 50%,
+    100% 100%,
+    0 100%
+  );
+  filter: blur(0.2px);
+}
+
+.mountain-mid {
+  background: #0f2a42;
+  opacity: 0.82;
+  height: 60%;
+  bottom: -3%;
+  clip-path: polygon(
+    0 72%,
+    9% 58%,
+    17% 67%,
+    26% 45%,
+    35% 65%,
+    44% 54%,
+    51% 68%,
+    60% 43%,
+    69% 63%,
+    78% 49%,
+    87% 68%,
+    94% 52%,
+    100% 59%,
+    100% 100%,
+    0 100%
+  );
+}
+
+.mountain-near {
+  background: #0b1d2e;
+  height: 52%;
+  bottom: -5%;
+  clip-path: polygon(
+    0 74%,
+    10% 57%,
+    19% 68%,
+    29% 50%,
+    39% 72%,
+    48% 55%,
+    57% 70%,
+    67% 47%,
+    76% 66%,
+    86% 53%,
+    94% 70%,
+    100% 58%,
+    100% 100%,
+    0 100%
+  );
+  box-shadow: 0 -20px 50px rgba(4, 11, 18, 0.18);
+}
+
+.mountain-front {
+  background: #081019;
+  height: 42%;
+  bottom: -9%;
+  clip-path: polygon(
+    0 69%,
+    12% 54%,
+    21% 66%,
+    31% 49%,
+    42% 70%,
+    53% 53%,
+    64% 67%,
+    75% 45%,
+    84% 63%,
+    93% 50%,
+    100% 61%,
+    100% 100%,
+    0 100%
+  );
+}
+
+.page {
+  position: relative;
+  z-index: 1;
+}
 
 .page {
   width: min(100%, 560px);
@@ -284,7 +394,7 @@ body::after {
   font-size: 12px;
 }
 
-social-links {
+.social-links {
   display: flex;
   gap: 10px;
   margin-top: 24px;
