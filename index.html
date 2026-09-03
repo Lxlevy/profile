@@ -58,57 +58,69 @@
   </main>
 
   <script>
-    const toggle = document.getElementById("bioToggle");
-    const bio = document.getElementById("fullBio");
-
-    toggle.addEventListener("click", () => {
-      const open = toggle.getAttribute("aria-expanded") === "true";
-      toggle.setAttribute("aria-expanded", String(!open));
-      bio.hidden = open;
-      toggle.textContent = open ? "View Full Bio" : "Hide Full Bio";
-    });
-
-    <script>
   const toggle = document.getElementById("bioToggle");
   const bio = document.getElementById("fullBio");
 
   toggle.addEventListener("click", () => {
     const open = toggle.getAttribute("aria-expanded") === "true";
+
     toggle.setAttribute("aria-expanded", String(!open));
     bio.hidden = open;
     toggle.textContent = open ? "View Full Bio" : "Hide Full Bio";
   });
 
-  // animated browser tab title
-  const titleText = "eau profile";
-  const baseTitle = "eau";
 
-  let titleIndex = baseTitle.length;
+  // browser tab title animation
+  const baseTitle = "eau";
+  const extraText = " profile";
+
+  let currentIndex = 0;
   let deleting = false;
 
   function animateTitle() {
-    document.title = titleText.slice(0, titleIndex);
 
     if (!deleting) {
-      if (titleIndex < titleText.length) {
-        titleIndex++;
-        setTimeout(animateTitle, 180);
-      } else {
+      // typing " profile"
+      currentIndex++;
+
+      document.title =
+        baseTitle + extraText.slice(0, currentIndex);
+
+      if (currentIndex === extraText.length) {
         deleting = true;
-        setTimeout(animateTitle, 1800);
+
+        // pause while showing "eau profile"
+        setTimeout(animateTitle, 2000);
+        return;
       }
+
+      setTimeout(animateTitle, 180);
+
     } else {
-      if (titleIndex > baseTitle.length) {
-        titleIndex--;
-        setTimeout(animateTitle, 120);
-      } else {
+      // deleting " profile"
+      currentIndex--;
+
+      document.title =
+        baseTitle + extraText.slice(0, currentIndex);
+
+      if (currentIndex === 0) {
         deleting = false;
-        setTimeout(animateTitle, 700);
+
+        // pause while showing "eau"
+        setTimeout(animateTitle, 1000);
+        return;
       }
+
+      setTimeout(animateTitle, 120);
     }
   }
 
-  animateTitle();
+
+  // start at "eau"
+  document.title = baseTitle;
+
+  // wait before starting animation
+  setTimeout(animateTitle, 1000);
 </script>
 </body>
 </html>
