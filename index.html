@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>eau</title>
+  <meta name="description" content="Minimal personal profile for eau_q." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="page">
+    <section class="profile-card" aria-label="Profile">
+      <div class="banner">
+        <img src="banner.jpg" alt="Blue mountain landscape" />
+        <div class="banner-shade"></div>
+      </div>
+
+      <div class="content">
+        <div class="identity-row">
+          <div class="avatar-wrap">
+            <img class="avatar" src="profile.png" alt="Profile illustration" />
+            <span class="status" title="Online"></span>
+          </div>
+
+          <div class="quote">
+            <span class="quote-icon">🪽</span>
+            <span>"i am the greatest programmer to ever live..." - terry a davis. </span>
+          </div>
+        </div>
+
+        <div class="name-block">
+          <h1>eau_q</h1>
+          <p class="subline">wpsp (discord) <span>•</span> heterosexual <span class="tag">🗡️ ETOH</span></p>
+        </div>
+
+        <div class="bio">
+          <p>i like to code</p>
+          <p>UTC-7 is my timezone</p>
+          <p>...</p>
+        </div>
+
+        <button class="bio-link" id="bioToggle" type="button" aria-expanded="false">
+          View Full Bio
+        </button>
+
+        <div class="full-bio" id="fullBio" hidden>
+          <p>i enjoy building things, experimenting with code, and turning random ideas into projects.</p>
+          <div class="chips">
+            <span>coding</span>
+            <span>math</span>
+            <span>roblox</span>
+            <span>minecraft</span>
+          </div>
+        </div>
+
+        <nav class="social-links" aria-label="Social links">
+          <a
+            class="social-button github"
+            href="https://github.com/Lxlevy"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M12 .7a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.25c-3.34.73-4.04-1.42-4.04-1.42-.55-1.4-1.33-1.77-1.33-1.77-1.08-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.66-.3-5.46-1.33-5.46-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.48 11.48 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.11.81 2.24v3.32c0 .32.22.69.83.57A12 12 0 0 0 12 .7Z"/>
+            </svg>
+            <span>GitHub</span>
+          </a>
+
+          <a
+            class="social-button youtube"
+            href="https://www.youtube.com/@eau_q"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="YouTube"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M23.5 6.19a3 3 0 0 0-2.11-2.12C19.53 3.56 12 3.56 12 3.56s-7.53 0-9.39.51A3 3 0 0 0 .5 6.19 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.81 3 3 0 0 0 2.11 2.12c1.86.51 9.39.51 9.39.51s7.53 0 9.39-.51a3 3 0 0 0 2.11-2.12A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.81ZM9.6 15.59V8.41L15.84 12 9.6 15.59Z"/>
+            </svg>
+            <span>YouTube</span>
+          </a>
+        </nav>
+
+        </div>
+    </section>
+  </main>
+
+  <script>
+  const toggle = document.getElementById("bioToggle");
+  const bio = document.getElementById("fullBio");
+
+  toggle.addEventListener("click", () => {
+    const open = toggle.getAttribute("aria-expanded") === "true";
+
+    toggle.setAttribute("aria-expanded", String(!open));
+    bio.hidden = open;
+    toggle.textContent = open ? "View Full Bio" : "Hide Full Bio";
+  });
+
+
+  // browser tab title animation
+  const baseTitle = "eau";
+  const extraText = " profile";
+
+  let currentIndex = 0;
+  let deleting = false;
+
+  function animateTitle() {
+
+    if (!deleting) {
+      // typing " profile"
+      currentIndex++;
+
+      document.title =
+        baseTitle + extraText.slice(0, currentIndex);
+
+      if (currentIndex === extraText.length) {
+        deleting = true;
+
+        // pause while showing "eau profile"
+        setTimeout(animateTitle, 2000);
+        return;
+      }
+
+      setTimeout(animateTitle, 180);
+
+    } else {
+      // deleting " profile"
+      currentIndex--;
+
+      document.title =
+        baseTitle + extraText.slice(0, currentIndex);
+
+      if (currentIndex === 0) {
+        deleting = false;
+
+        // pause while showing "eau"
+        setTimeout(animateTitle, 1000);
+        return;
+      }
+
+      setTimeout(animateTitle, 120);
+    }
+  }
+
+
+  // start at "eau"
+  document.title = baseTitle;
+
+  // wait before starting animation
+  setTimeout(animateTitle, 1000);
+</script>
+</body>
+</html>
